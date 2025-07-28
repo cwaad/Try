@@ -2,104 +2,123 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>From My Heart to Yours 💌</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <title>Love Message</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom right, #fdf6f0, #f9d5d3);
-      font-family: 'Great Vibes', cursive;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
+      background-color: #f5e8dc; /* خلفية بيج */
+      font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
+      color: #000;
+      text-align: center;
     }
 
     h1 {
-      font-size: 3.5em;
-      color: #b03a2e;
-      opacity: 0;
-      animation: fadeIn 3s ease forwards;
-      animation-delay: 1s;
-      margin: 0 20px;
+      font-size: 40px;
+      margin-top: 100px;
+      animation: fadeIn 3s ease-in-out;
+      text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff69b4;
     }
 
-    .message {
-      font-size: 1.8em;
-      color: #6e2c00;
-      margin-top: 20px;
-      max-width: 700px;
-      opacity: 0;
-      animation: fadeIn 3s ease forwards;
-      animation-delay: 2s;
-      line-height: 1.6;
-    }
-
-    .heart {
-      position: relative;
-      width: 150px;
-      height: 130px;
-      margin-top: 60px;
-      transform: scale(1);
-      animation: pulse 2s ease-in-out infinite, fadeIn 2s ease forwards;
-      animation-delay: 3.5s;
-      opacity: 0;
-    }
-
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      width: 75px;
-      height: 120px;
-      background: #e74c3c;
-      border-radius: 75px 75px 0 0;
-    }
-
-    .heart::before {
-      left: 75px;
-      transform: rotate(-45deg);
-      transform-origin: left bottom;
-    }
-
-    .heart::after {
-      left: 0;
-      transform: rotate(45deg);
-      transform-origin: right bottom;
+    #message {
+      font-size: 22px;
+      margin: 20px auto;
+      width: 60%;
+      min-height: 100px;
+      animation: fadeIn 5s ease-in-out;
     }
 
     @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart {
+      position: fixed;
+      top: -50px;
+      font-size: 20px;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
       to {
-        opacity: 1;
+        transform: translateY(110vh);
+        opacity: 0;
       }
     }
 
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.1);
-      }
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ffb6c1;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff85a2;
+    }
+
+    #secret {
+      display: none;
+      margin-top: 20px;
+      font-weight: bold;
+      color: darkred;
+      font-size: 20px;
     }
   </style>
 </head>
 <body>
+  <h1>أنا أحبك ❤️</h1>
+  <p id="message"></p>
 
-  <h1>I love you, deeply and truly.</h1>
+  <button onclick="showSecret()">هل تحبني؟</button>
+  <p id="secret">أنا بعد أحبك 💖</p>
 
-  <div class="message">
-    Not just today, not just in passing moments.<br>
-    I love you in the quiet, in the chaos, in the ordinary and the extraordinary.<br>
-    It's not just a feeling—it's home. And my heart found it in you.
-  </div>
+  <script>
+    // كتابة النص كلمة كلمة
+    const fullMessage = "ما كنت أتخيل إن شخص واحد يقدر يغير عالمي بهالطريقة... بس أنت فعلًا سويت هذا وأكثر.";
+    const messageBox = document.getElementById("message");
+    let i = 0;
 
-  <div class="heart"></div>
+    function typeMessage() {
+      if (i < fullMessage.length) {
+        messageBox.innerHTML += fullMessage.charAt(i);
+        i++;
+        setTimeout(typeMessage, 50);
+      }
+    }
+    typeMessage();
 
+    // إظهار رسالة الحب
+    function showSecret() {
+      document.getElementById("secret").style.display = "block";
+    }
+
+    // قلوب تتساقط
+    const colors = ["#ff4d6d", "#ff8fab", "#ffc2d1", "#ffe5ec"];
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 7000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
 </body>
 </html>
