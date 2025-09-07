@@ -12,18 +12,24 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at top, #0b1220, #0f172a);
-      color: #e2e8f0;
+      background: #0f0f0f;
+      color: #e5e5e5;
       font-family: Arial, sans-serif;
     }
 
-    h1 {
-      font-size: clamp(22px, 3vw, 36px);
-      margin-bottom: 10px;
+    header {
+      text-align: center;
+      margin-bottom: 40px;
     }
 
-    p {
-      margin: 0 0 40px;
+    header h1 {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: bold;
+    }
+
+    header p {
+      margin: 8px 0 0;
       opacity: 0.8;
     }
 
@@ -45,23 +51,22 @@
       position: absolute;
       width: 200px;
       height: 200px;
-      border: 2px solid rgba(255,255,255,0.3);
-      background: rgba(56,189,248,0.8);
+      border: 2px solid rgba(255,255,255,0.2);
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .front  { transform: rotateY(0deg) translateZ(100px);  background:#1e293b; }
-    .back   { transform: rotateY(180deg) translateZ(100px); background:#0ea5e9; }
-    .right  { transform: rotateY(90deg) translateZ(100px);  background:#22c55e; }
-    .left   { transform: rotateY(-90deg) translateZ(100px); background:#f59e0b; }
-    .top    { transform: rotateX(90deg) translateZ(100px);  background:#a78bfa; }
-    .bottom { transform: rotateX(-90deg) translateZ(100px); background:#ef4444; }
+    .front  { background: #444; transform: rotateY(0deg) translateZ(100px); }
+    .back   { background: #555; transform: rotateY(180deg) translateZ(100px); }
+    .right  { background: #666; transform: rotateY(90deg)  translateZ(100px); }
+    .left   { background: #777; transform: rotateY(-90deg) translateZ(100px); }
+    .top    { background: #888; transform: rotateX(90deg)  translateZ(100px); }
+    .bottom { background: #999; transform: rotateX(-90deg) translateZ(100px); }
 
     @keyframes rotate {
-      from { transform: rotateX(-20deg) rotateY(0deg); }
-      to   { transform: rotateX(-20deg) rotateY(360deg); }
+      from { transform: rotateX(30deg) rotateY(0deg); }
+      to   { transform: rotateX(30deg) rotateY(360deg); }
     }
 
     /* يوقف الدوران عند الهوفر */
@@ -71,8 +76,10 @@
   </style>
 </head>
 <body>
-  <h1>Congratulations Abdulaziz on Your New Job 🎉</h1>
-  <p>Wishing you all the best in your career journey.</p>
+  <header>
+    <h1>Congratulations Abdulaziz on Your New Job 🎉</h1>
+    <p>Wishing you success and great achievements ahead.</p>
+  </header>
 
   <div class="scene">
     <div class="cube">
