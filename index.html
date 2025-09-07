@@ -8,9 +8,6 @@
     :root{
       --bg: #0f172a;
       --text: #e2e8f0;
-      --accent: #38bdf8;
-      --face1:#1e293b; --face2:#0ea5e9; --face3:#22c55e;
-      --face4:#f59e0b; --face5:#a78bfa; --face6:#ef4444;
       --cube-size: 160px;
       --shadow: 0 20px 80px rgba(0,0,0,.35);
     }
@@ -20,7 +17,6 @@
       min-height:100vh;
       display:grid;
       place-items:center;
-      gap:24px;
       background: radial-gradient(1200px 600px at 70% 10%, #0b1220, var(--bg));
       color:var(--text);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -74,22 +70,18 @@
     .face{
       position: absolute;
       inset: 0;
-      display:grid;
-      place-items:center;
-      font-weight:700;
-      color:#0b1020;
-      border: 2px solid var(--accent);
-      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,.2);
+      border-radius: 6px;
       opacity:.95;
-      user-select: none;
     }
 
-    .front  { background: var(--face1); transform: translateZ(calc(var(--cube-size)/2)); }
-    .back   { background: var(--face2); transform: rotateY(180deg) translateZ(calc(var(--cube-size)/2)); }
-    .right  { background: var(--face3); transform: rotateY(90deg)  translateZ(calc(var(--cube-size)/2)); }
-    .left   { background: var(--face4); transform: rotateY(-90deg) translateZ(calc(var(--cube-size)/2)); }
-    .top    { background: var(--face5); transform: rotateX(90deg)  translateZ(calc(var(--cube-size)/2)); }
-    .bottom { background: var(--face6); transform: rotateX(-90deg) translateZ(calc(var(--cube-size)/2)); }
+    /* ألوان كل وجه */
+    .front  { background: #1e293b; transform: translateZ(calc(var(--cube-size)/2)); }
+    .back   { background: #0ea5e9; transform: rotateY(180deg) translateZ(calc(var(--cube-size)/2)); }
+    .right  { background: #22c55e; transform: rotateY(90deg)  translateZ(calc(var(--cube-size)/2)); }
+    .left   { background: #f59e0b; transform: rotateY(-90deg) translateZ(calc(var(--cube-size)/2)); }
+    .top    { background: #a78bfa; transform: rotateX(90deg)  translateZ(calc(var(--cube-size)/2)); }
+    .bottom { background: #ef4444; transform: rotateX(-90deg) translateZ(calc(var(--cube-size)/2)); }
 
     @keyframes spin {
       0%   { transform: rotateX(-20deg) rotateY(0deg); }
@@ -97,14 +89,9 @@
       100% { transform: rotateX(700deg) rotateY(360deg); }
     }
 
-    .controls button{
-      cursor:pointer;
-      padding:10px 14px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.06);
-      color:var(--text);
-      font-weight:600;
+    /* يوقف الدوران لما تحط الماوس */
+    .cube:hover{
+      animation-play-state: paused;
     }
   </style>
 </head>
@@ -114,31 +101,15 @@
     <p class="subtitle">Wishing you success and great achievements ahead!</p>
 
     <div class="stage">
-      <div class="cube" id="cube">
-        <div class="face front">🎯</div>
-        <div class="face back">🚀</div>
-        <div class="face right">👏</div>
-        <div class="face left">💼</div>
-        <div class="face top">🌟</div>
-        <div class="face bottom">🎉</div>
+      <div class="cube">
+        <div class="face front"></div>
+        <div class="face back"></div>
+        <div class="face right"></div>
+        <div class="face left"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
       </div>
     </div>
-
-    <div class="controls">
-      <button id="toggle">Pause/Resume Cube Rotation</button>
-    </div>
   </main>
-
-  <script>
-    const cube = document.getElementById('cube');
-    const btn  = document.getElementById('toggle');
-    let paused = false;
-
-    btn.addEventListener('click', () => {
-      paused = !paused;
-      cube.style.animationPlayState = paused ? 'paused' : 'running';
-      btn.textContent = paused ? 'Resume Cube Rotation' : 'Pause Cube Rotation';
-    });
-  </script>
 </body>
 </html>
