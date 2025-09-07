@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Congratulations Abdulaziz</title>
+  <style>
+    :root{
+      --bg: #0f172a;
+      --text: #e2e8f0;
+      --accent: #38bdf8;
+      --face1:#1e293b; --face2:#0ea5e9; --face3:#22c55e;
+      --face4:#f59e0b; --face5:#a78bfa; --face6:#ef4444;
+      --cube-size: 160px;
+      --shadow: 0 20px 80px rgba(0,0,0,.35);
+    }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      gap:24px;
+      background: radial-gradient(1200px 600px at 70% 10%, #0b1220, var(--bg));
+      color:var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    .card{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:22px;
+      text-align:center;
+      padding:28px 24px 36px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      backdrop-filter: blur(8px);
+      border-radius:18px;
+      box-shadow: var(--shadow);
+    }
+
+    h1{
+      margin:0;
+      font-weight:800;
+      line-height:1.2;
+      font-size: clamp(22px, 3.3vw, 36px);
+    }
+
+    .subtitle{
+      margin-top:-8px;
+      opacity:.8;
+      font-size: clamp(14px, 2.2vw, 16px);
+    }
+
+    .stage{
+      width: calc(var(--cube-size) * 2.1);
+      height: calc(var(--cube-size) * 2.1);
+      display:grid;
+      place-items:center;
+      perspective: 900px;
+      perspective-origin: 50% 40%;
+    }
+
+    .cube{
+      position: relative;
+      width: var(--cube-size);
+      height: var(--cube-size);
+      transform-style: preserve-3d;
+      animation: spin 12s linear infinite;
+      filter: drop-shadow(0 30px 20px rgba(0,0,0,.25));
+    }
+
+    .face{
+      position: absolute;
+      inset: 0;
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      color:#0b1020;
+      border: 2px solid var(--accent);
+      border-radius: 10px;
+      opacity:.95;
+      user-select: none;
+    }
+
+    .front  { background: var(--face1); transform: translateZ(calc(var(--cube-size)/2)); }
+    .back   { background: var(--face2); transform: rotateY(180deg) translateZ(calc(var(--cube-size)/2)); }
+    .right  { background: var(--face3); transform: rotateY(90deg)  translateZ(calc(var(--cube-size)/2)); }
+    .left   { background: var(--face4); transform: rotateY(-90deg) translateZ(calc(var(--cube-size)/2)); }
+    .top    { background: var(--face5); transform: rotateX(90deg)  translateZ(calc(var(--cube-size)/2)); }
+    .bottom { background: var(--face6); transform: rotateX(-90deg) translateZ(calc(var(--cube-size)/2)); }
+
+    @keyframes spin {
+      0%   { transform: rotateX(-20deg) rotateY(0deg); }
+      50%  { transform: rotateX(340deg) rotateY(180deg); }
+      100% { transform: rotateX(700deg) rotateY(360deg); }
+    }
+
+    .controls button{
+      cursor:pointer;
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:600;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Congratulations Abdulaziz on Your New Job 🎉</h1>
+    <p class="subtitle">Wishing you success and great achievements ahead!</p>
+
+    <div class="stage">
+      <div class="cube" id="cube">
+        <div class="face front">🎯</div>
+        <div class="face back">🚀</div>
+        <div class="face right">👏</div>
+        <div class="face left">💼</div>
+        <div class="face top">🌟</div>
+        <div class="face bottom">🎉</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="toggle">Pause/Resume Cube Rotation</button>
+    </div>
+  </main>
+
+  <script>
+    const cube = document.getElementById('cube');
+    const btn  = document.getElementById('toggle');
+    let paused = false;
+
+    btn.addEventListener('click', () => {
+      paused = !paused;
+      cube.style.animationPlayState = paused ? 'paused' : 'running';
+      btn.textContent = paused ? 'Resume Cube Rotation' : 'Pause Cube Rotation';
+    });
+  </script>
+</body>
+</html>
