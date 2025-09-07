@@ -3,113 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Congratulations Abdulaziz</title>
+  <title>3D Cube - Congratulations Abdulaziz</title>
   <style>
-    :root{
-      --bg: #0f172a;
-      --text: #e2e8f0;
-      --cube-size: 160px;
-      --shadow: 0 20px 80px rgba(0,0,0,.35);
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #0b1220, #0f172a);
+      color: #e2e8f0;
+      font-family: Arial, sans-serif;
     }
 
-    body{
-      margin:0;
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-      background: radial-gradient(1200px 600px at 70% 10%, #0b1220, var(--bg));
-      color:var(--text);
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    h1 {
+      font-size: clamp(22px, 3vw, 36px);
+      margin-bottom: 10px;
     }
 
-    .card{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:22px;
-      text-align:center;
-      padding:28px 24px 36px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.04);
-      backdrop-filter: blur(8px);
-      border-radius:18px;
-      box-shadow: var(--shadow);
+    p {
+      margin: 0 0 40px;
+      opacity: 0.8;
     }
 
-    h1{
-      margin:0;
-      font-weight:800;
-      line-height:1.2;
-      font-size: clamp(22px, 3.3vw, 36px);
+    .scene {
+      width: 200px;
+      height: 200px;
+      perspective: 800px;
     }
 
-    .subtitle{
-      margin-top:-8px;
-      opacity:.8;
-      font-size: clamp(14px, 2.2vw, 16px);
-    }
-
-    .stage{
-      width: calc(var(--cube-size) * 2.1);
-      height: calc(var(--cube-size) * 2.1);
-      display:grid;
-      place-items:center;
-      perspective: 900px;
-      perspective-origin: 50% 40%;
-    }
-
-    .cube{
+    .cube {
+      width: 100%;
+      height: 100%;
       position: relative;
-      width: var(--cube-size);
-      height: var(--cube-size);
       transform-style: preserve-3d;
-      animation: spin 12s linear infinite;
-      filter: drop-shadow(0 30px 20px rgba(0,0,0,.25));
+      animation: rotate 8s infinite linear;
     }
 
-    .face{
+    .face {
       position: absolute;
-      inset: 0;
-      border: 2px solid rgba(255,255,255,.2);
-      border-radius: 6px;
-      opacity:.95;
+      width: 200px;
+      height: 200px;
+      border: 2px solid rgba(255,255,255,0.3);
+      background: rgba(56,189,248,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* ألوان كل وجه */
-    .front  { background: #1e293b; transform: translateZ(calc(var(--cube-size)/2)); }
-    .back   { background: #0ea5e9; transform: rotateY(180deg) translateZ(calc(var(--cube-size)/2)); }
-    .right  { background: #22c55e; transform: rotateY(90deg)  translateZ(calc(var(--cube-size)/2)); }
-    .left   { background: #f59e0b; transform: rotateY(-90deg) translateZ(calc(var(--cube-size)/2)); }
-    .top    { background: #a78bfa; transform: rotateX(90deg)  translateZ(calc(var(--cube-size)/2)); }
-    .bottom { background: #ef4444; transform: rotateX(-90deg) translateZ(calc(var(--cube-size)/2)); }
+    .front  { transform: rotateY(0deg) translateZ(100px);  background:#1e293b; }
+    .back   { transform: rotateY(180deg) translateZ(100px); background:#0ea5e9; }
+    .right  { transform: rotateY(90deg) translateZ(100px);  background:#22c55e; }
+    .left   { transform: rotateY(-90deg) translateZ(100px); background:#f59e0b; }
+    .top    { transform: rotateX(90deg) translateZ(100px);  background:#a78bfa; }
+    .bottom { transform: rotateX(-90deg) translateZ(100px); background:#ef4444; }
 
-    @keyframes spin {
-      0%   { transform: rotateX(-20deg) rotateY(0deg); }
-      50%  { transform: rotateX(340deg) rotateY(180deg); }
-      100% { transform: rotateX(700deg) rotateY(360deg); }
+    @keyframes rotate {
+      from { transform: rotateX(-20deg) rotateY(0deg); }
+      to   { transform: rotateX(-20deg) rotateY(360deg); }
     }
 
-    /* يوقف الدوران لما تحط الماوس */
-    .cube:hover{
+    /* يوقف الدوران عند الهوفر */
+    .cube:hover {
       animation-play-state: paused;
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <h1>Congratulations Abdulaziz on Your New Job 🎉</h1>
-    <p class="subtitle">Wishing you success and great achievements ahead!</p>
+  <h1>Congratulations Abdulaziz on Your New Job 🎉</h1>
+  <p>Wishing you all the best in your career journey.</p>
 
-    <div class="stage">
-      <div class="cube">
-        <div class="face front"></div>
-        <div class="face back"></div>
-        <div class="face right"></div>
-        <div class="face left"></div>
-        <div class="face top"></div>
-        <div class="face bottom"></div>
-      </div>
+  <div class="scene">
+    <div class="cube">
+      <div class="face front"></div>
+      <div class="face back"></div>
+      <div class="face right"></div>
+      <div class="face left"></div>
+      <div class="face top"></div>
+      <div class="face bottom"></div>
     </div>
-  </main>
+  </div>
 </body>
 </html>
